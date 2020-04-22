@@ -35,10 +35,11 @@ import useDeleteStory from './actions/useDeleteStory';
 
 function StoryProvider({ storyId, children }) {
   const {
-    state: { pages, current, selection, story, capabilities },
+    state: reducerState,
     api,
     internal: { restore },
   } = useStoryReducer();
+  const { pages, current, selection, story, capabilities } = reducerState;
 
   // Generate current page info.
   const {
@@ -125,8 +126,10 @@ function StoryProvider({ storyId, children }) {
       meta: {
         isSaving,
       },
+      reducerState,
     },
     actions: {
+      restore,
       ...api,
       saveStory,
       deleteStory,
