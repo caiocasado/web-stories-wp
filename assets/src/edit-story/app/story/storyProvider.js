@@ -126,14 +126,13 @@ function StoryProvider({ storyId, children }) {
       meta: {
         isSaving,
       },
-      reducerState,
     },
     actions: {
-      restore,
       ...api,
       saveStory,
       deleteStory,
     },
+    internal: { reducerState, restore },
   };
 
   return <Context.Provider value={state}>{children}</Context.Provider>;
